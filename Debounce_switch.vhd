@@ -9,7 +9,7 @@ end Debounce_switch;
 
 architecture Behavioral of Debounce_switch is
  signal inff : std_logic_vector(1 downto 0);
- constant cnt_max : integer := 10;
+ constant cnt_max : integer := 5;
  signal count : integer range 0 to cnt_max := 0;
  signal keepResult : std_logic := '1';
   begin

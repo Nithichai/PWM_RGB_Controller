@@ -4,9 +4,9 @@ use ieee.std_logic_1164.all;
 entity PWM_ALL is
 	generic(N : integer := 3);
 	port(CLK, RST_B : in std_logic;
-			PBs : in std_logic_vector(N downto 0);
+			PBs : in std_logic_vector(N-1 downto 0);
 			Selectors : in std_logic_vector(3 downto 0);
-			PWMs : out std_logic_vector(N downto 0));
+			PWMs : out std_logic_vector(N-1 downto 0));
 end PWM_ALL;
 
 architecture data_flow of PWM_ALL is

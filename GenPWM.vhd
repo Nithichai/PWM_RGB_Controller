@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity GenPWM is
-	generic(max_period : integer := 100000);
+	generic(max_period : integer := 100);
 	port(CLK, nRESET : in std_logic;
 			PWM_set   : in std_logic_vector(3 downto 0);
 			F_set	    : in std_logic_vector(3 downto 0);
@@ -14,29 +14,29 @@ architecture SYNTH_1 of GenPWM is
  signal pwm_period : integer range 0 to max_period := max_period;
  signal cnt, duty : integer range 0 to max_period;
   begin
-	process(nRESET, CLK, PWM_set) 
+	process(nRESET, CLK, F_set, PWM_set) 
 		begin
 			if nRESET = '0' then
 				duty <= 0;
-				pwm_period <= 100000;
+				pwm_period <= 100;--000;
 			elsif rising_edge(CLK) then
 				case F_set is
-					when "0000" => pwm_period <= 100;--100000;
-					when "0001" => pwm_period <= 93;--93808;
-					when "0010" => pwm_period <= 88;--88339;
-					when "0011" => pwm_period <= 83;--83472;
-					when "0100" => pwm_period <= 79;--79113;
-					when "0101" => pwm_period <= 75;--75187;
-					when "0110" => pwm_period <= 71;--71633;
-					when "0111" => pwm_period <= 68;--68399;
-					when "1000" => pwm_period <= 65;--65445;
-					when "1001" => pwm_period <= 62;--62735;
-					when "1010" => pwm_period <= 60;--60240;
-					when "1011" => pwm_period <= 57;--57937;
-					when "1100" => pwm_period <= 55;--55803;
-					when "1101" => pwm_period <= 53;--53821;
-					when "1110" => pwm_period <= 51;--51975;
-					when "1111" => pwm_period <= 50;--50000;
+					when "0000" => pwm_period <= 100;--000;
+					when "0001" => pwm_period <= 93;--808;
+					when "0010" => pwm_period <= 88;--339;
+					when "0011" => pwm_period <= 83;--472;
+					when "0100" => pwm_period <= 79;--113;
+					when "0101" => pwm_period <= 75;--187;
+					when "0110" => pwm_period <= 71;--633;
+					when "0111" => pwm_period <= 68;--399;
+					when "1000" => pwm_period <= 65;--445;
+					when "1001" => pwm_period <= 62;--735;
+					when "1010" => pwm_period <= 60;--240;
+					when "1011" => pwm_period <= 57;--937;
+					when "1100" => pwm_period <= 55;--803;
+					when "1101" => pwm_period <= 53;--821;
+					when "1110" => pwm_period <= 51;--975;
+					when "1111" => pwm_period <= 50;--000;
 				end case;
 				case PWM_set is
 					when "0000" => duty <= 0;
